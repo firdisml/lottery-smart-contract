@@ -2,6 +2,7 @@ pragma solidity ^0.4.26;
 
 contract Lottery {
     address public manager;
+    address public lastWinner;
     address [] public players;
     
 
@@ -24,6 +25,7 @@ contract Lottery {
 
         uint index = random() % players.length;
         players[index].transfer(address(this).balance);
+        lastWinner = players[index];
         players = new address[](0);
     }
 

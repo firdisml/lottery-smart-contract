@@ -111,6 +111,20 @@ describe('Lottery Contract', () =>{
 
     })
 
+    it('Can print winner address once winner is picked', async () =>{
+
+        await lottery.methods.enter().send({
+            from: accounts[0], value: web3.utils.toWei('2', 'ether')
+        })
+
+        await lottery.methods.winner().send({ from: accounts[0]});
+
+        const winner = await lottery.methods.lastWinner().call({ from: accounts[0]});
+
+        assert.ok(winner);
+
+    })
+
 
 
 
